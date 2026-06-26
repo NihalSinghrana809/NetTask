@@ -1,28 +1,41 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import TodoItem from "./TodoItem"
 import todo_icon from "../assets/todo_icon.png"
 
 const Todo = () => {
       const inputRef = useRef();
-      const [todolist, setTodolist] = useState([]);
+      const [todoList, setTodoList] = useState([]);
       const add = () => {
             const inputText = inputRef.current.value.trim();
             if (inputText === "") {
-                  return null;
+                  return;
             }
             const newTodo = {
                   id: Date.now(),
                   text: inputText,
                   isComplete: false
             }
-            setTodolist((prev) => [...prev, newTodo]);
+            setTodoList((prev) => [...prev, newTodo]);
             inputRef.current.value = "";
       }
       const deleteTodo = (id) => {
-            setTodolist((prevTodos) => {
+            setTodoList((prevTodos) => {
                   return prevTodos.filter((todo) => todo.id !== id)
             })
       }
+      const toggle = (id) => {
+            setTodoList((prevTodos) => {
+                  return prevTodos.map((todo) => {
+                        if (todo.id === id) {
+                              return { ...todo, isComplete: !todo.isComplete }
+                        }
+                        return todo;
+                  })
+            })
+      }
+      useEffect(() => {
+            console.log(todoList);
+      }, [todoList])
       return (
             <div className="bg-white place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-[550px] rounded-xl">
                   {/*-------Title--------*/}
@@ -37,8 +50,8 @@ const Todo = () => {
                   </div>
                   {/*-------todo list----*/}
                   <div>
-                        {todolist.map((item) => (
-                              <TodoItem key={item.id} id={item.id} text={item.text} isComplete={item.isComplete} deleteTodo={deleteTodo} />
+                        {todoList.map((item) => (
+                              <TodoItem key={item.id} id={item.id} text={item.text} isComplete={item.isComplete} deleteTodo={deleteTodo} toggle={toggle} />
                         ))}
                   </div>
             </div>
