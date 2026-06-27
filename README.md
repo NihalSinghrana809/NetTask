@@ -1,4 +1,4 @@
-# ✅ To-Do List App
+# ✅ Net Task App
 
 A clean, minimal **To-Do List** web application built with **React 19** and **Vite**, styled using **Tailwind CSS**. Tasks are persisted in the browser's **localStorage**, so they survive page refreshes.
 
@@ -74,7 +74,7 @@ npm install
 npm run dev
 ```
 
-The app will be available at **http://localhost:5173** by default.
+The app will be available at **<http://localhost:5173>** by default.
 
 ---
 
@@ -92,13 +92,17 @@ The app will be available at **http://localhost:5173** by default.
 ## 🧩 Component Overview
 
 ### `Todo.jsx`
+
 The core component that manages all application state:
+
 - Holds `todoList` state, initialized from `localStorage`
 - Exposes `add`, `deleteTodo`, and `toggle` handlers passed down as props
 - Uses `useEffect` to sync state changes back to `localStorage`
 
 ### `TodoItem.jsx`
+
 A stateless presentational component representing a single task row:
+
 - Displays the task text with a strikethrough style when completed
 - Shows a **tick** or **not-tick** icon based on completion status
 - Includes a delete icon to remove the task
@@ -114,4 +118,3 @@ Contributions, issues, and feature requests are welcome!
 3. Commit your changes: `git commit -m 'Add my feature'`
 4. Push to the branch: `git push origin feature/my-feature`
 5. Open a Pull Request
-

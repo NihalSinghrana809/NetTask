@@ -41,7 +41,7 @@ const Todo = () => {
                   {/*-------Title--------*/}
                   <div className="flex items-center mt-7 gap-2">
                         <img className="w-8" src={todo_icon} alt="Todo icon" />
-                        <h1 className="text-3xl font-semibold">To-do List</h1>
+                        <h1 className="text-3xl font-semibold">Net Task</h1>
                   </div>
                   {/*-------Input Box----*/}
                   <div className="flex items-center my-7 bg-gray-200 rounded-full">
