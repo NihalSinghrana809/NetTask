@@ -2,12 +2,12 @@ import tick from "../assets/tick.png"
 import notTick from "../assets/not_tick.png"
 import deleteIcon from "../assets/delete.png"
 
-const TodoItem = ({ text, id, isComplete, deleteTodo, toggle }) => (
+const TodoItem=({text,id,isComplete,deleteTodo,toggle}) => (
 	<div className="flex items-center gap-2">
 		<div
-			onClick={() => toggle(id)}
-			onKeyDown={(event) => {
-				if (event.key === "Enter" || event.key === " ") {
+			onClick={()=>toggle(id)}
+			onKeyDown={(event)=>{
+				if(event.key==="Enter"||event.key===" "){
 					event.preventDefault()
 					toggle(id)
 				}
@@ -16,18 +16,18 @@ const TodoItem = ({ text, id, isComplete, deleteTodo, toggle }) => (
 			role="button"
 			tabIndex={0}
 		>
-			<img className="w-7" src={isComplete ? tick : notTick} alt="Complete task" />
+			<img className="w-7" src={isComplete ? tick : notTick} alt="Complete task"/>
 			<p className={`ml-4 text-[17px] ${isComplete ? "line-through text-slate-400" : "text-slate-700"}`}>
 				{text}
 			</p>
 		</div>
 		<button
 			type="button"
-			onClick={() => deleteTodo(id)}
+			onClick={()=>deleteTodo(id)}
 			className="cursor-pointer border-0 bg-transparent p-0"
 			aria-label={`Delete task ${text}`}
 		>
-			<img className="w-3.5" src={deleteIcon} alt="Delete task" />
+			<img className="w-3.5" src={deleteIcon} alt="Delete task"/>
 		</button>
 	</div>
 )

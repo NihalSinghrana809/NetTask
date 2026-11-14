@@ -1,30 +1,31 @@
-import { useEffect, useRef, useState } from "react"
+import {useEffect,useRef,useState} from "react"
 import TodoItem from "./TodoItem"
 import todoIcon from "../assets/todo_icon.png"
 
 const STORAGE_KEY = "todos"
 
-const readTodos = () => {
-	try {
-		const storedTodos = localStorage.getItem(STORAGE_KEY)
-		return storedTodos ? JSON.parse(storedTodos) : []
-	} catch (error) {
+const readTodos=()=>{
+	try{
+		const storedTodos=localStorage.getItem(STORAGE_KEY)
+		return storedTodos?JSON.parse(storedTodos):[]
+	}
+	catch(error){
 		console.error("Failed to read todos from localStorage.", error)
 		return []
 	}
 }
 
-const Todo = () => {
-	const inputRef = useRef(null)
-	const [todoList, setTodoList] = useState(readTodos)
+const Todo=()=>{
+	const inputRef=useRef(null)
+	const [todoList,setTodoList]=useState(readTodos)
 
-	const addTodo = () => {
-		const inputText = inputRef.current?.value.trim()
-		if (!inputText) {
+	const addTodo=()=>{
+		const inputText=inputRef.current?.value.trim()
+		if(!inputText){
 			return
 		}
 
-		setTodoList((prevTodos) => [
+		setTodoList((prevTodos)=>[
 			...prevTodos,
 			{
 				id: Date.now(),
@@ -32,23 +33,23 @@ const Todo = () => {
 				isComplete: false,
 			},
 		])
-		inputRef.current.value = ""
+		inputRef.current.value=""
 		inputRef.current.focus()
 	}
 
-	const deleteTodo = (id) => {
-		setTodoList((prevTodos) => prevTodos.filter((todo) => todo.id !== id))
+	const deleteTodo=(id)=>{
+		setTodoList((prevTodos)=>prevTodos.filter((todo)=>todo.id !==id))
 	}
 
-	const toggleTodo = (id) => {
-		setTodoList((prevTodos) =>
-			prevTodos.map((todo) =>
-				todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo,
+	const toggleTodo=(id)=>{
+		setTodoList((prevTodos)=>
+			prevTodos.map((todo)=>
+				todo.id===id?{...todo, isComplete:!todo.isComplete}:todo,
 			),
 		)
 	}
 
-	useEffect(() => {
+	useEffect(()=>{
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(todoList))
 	}, [todoList])
 
@@ -66,8 +67,8 @@ const Todo = () => {
 						className="h-14 flex-1 border-0 bg-transparent pl-6 pr-2 text-slate-800 outline-none placeholder:text-slate-600"
 						type="text"
 						placeholder="Add your task"
-						onKeyDown={(event) => {
-							if (event.key === "Enter") {
+						onKeyDown={(event)=>{
+							if(event.key==="Enter"){
 								addTodo()
 							}
 						}}
